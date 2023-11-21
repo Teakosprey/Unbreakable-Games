@@ -1,1 +1,74 @@
+-- MySQL Workbench Forward Engineering
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
+-- -----------------------------------------------------
+-- Schema unbreakable-games
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS unbreakable_games DEFAULT CHARACTER SET utf8 ;
+USE unbreakable_games ;
+
+-- -----------------------------------------------------
+-- Table unbreakale-games.Juegos
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS unbreakable_games.Juegos (
+  ID_Juego INT NOT NULL AUTO_INCREMENT,
+  Nombre VARCHAR(45) NOT NULL,
+  Genero VARCHAR(45) NOT NULL,
+  Precio DOUBLE NOT NULL,
+  Descripcion VARCHAR(255) NOT NULL,
+  PRIMARY KEY (ID_Juego))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table unbreakable-games.Usuarios
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS unbreakable_games.Usuarios (
+  Usuario VARCHAR(25) NOT NULL,
+  Nivel INT NOT NULL,
+  Password VARCHAR(45) NOT NULL,
+  Creditos INT NOT NULL,
+  PRIMARY KEY (Usuario))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table unbreakable_games.Permisos
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS unbreakable_games.Permisos (
+  ID_Nivel INT NOT NULL AUTO_INCREMENT,
+  Permiso VARCHAR(25) NOT NULL,
+  PRIMARY KEY (ID_Nivel))
+ENGINE = InnoDB;
+-- -----------------------------------------------------
+-- Table unbreakable_games.Ventas
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS unbreakable_games.Ventas (
+  ID_Venta INT NOT NULL AUTO_INCREMENT,
+  ID_Juego INT NOT NULL,
+  ID_Usuario VARCHAR(25) NOT NULL,
+  ID_Nivel INT NOT NULL,
+  INDEX ID_idx (ID_Juego ASC) VISIBLE,
+  INDEX Usuario_idx (ID_Usuario ASC) VISIBLE,
+  INDEX ID_Nivel_idx (ID_Nivel ASC) VISIBLE,
+  PRIMARY KEY (ID_Venta),
+  CONSTRAINT ID
+    FOREIGN KEY (ID_Juego)
+    REFERENCES unbreakable_games.Juegos (ID_Juego)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT Usuario
+    FOREIGN KEY (ID_Usuario)
+    REFERENCES unbreakable_games.Usuarios (Usuario)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT ID_Nivel
+    FOREIGN KEY (ID_Nivel)
+    REFERENCES unbreakable_games.Permisos (ID_Nivel)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
