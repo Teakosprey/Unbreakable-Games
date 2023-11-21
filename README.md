@@ -4,4 +4,4 @@ En este proyecto se realizara una base de datos en MYSQL que está destinado al 
 
 # Iniciando 📋
 
-_En este proyecto basicamente que lo que vamos a necesitar va hacer MYSQL workbench
+En este proyecto basicamente que lo que vamos a necesitar va hacer MYSQL workbench
