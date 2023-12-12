@@ -17,7 +17,7 @@ Como se puede apreciar en la siguiente imagen se trata del diagrama de flujo de 
 
 # Integrantes del equipo de desarrollo 🔧
 
-- Hernández Martínez Abiel Said
+- Hernández Martínez Abdiel Said
 - Villa Villaseñor Víctor Manuel 
 - Mahe Romero Yeshua Eduardo
 
